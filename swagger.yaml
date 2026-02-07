@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  title: Bookshelf API
+  version: 1.0.0
+
+  servers:
+  - url: https://organic-space-pancake-jj464xjjrx73qp5q-3000.app.github.dev
+    description: Codespaces Environment
+  - url: http://localhost:3000
+    description: Local Development
+
+paths:
+  /books:
+    get:
+      summary: Ambil semua buku
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Tambah buku
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: {type: string}
+                author: {type: string}
+      responses:
+        '201':
+          description: Created
+
+  /books/{bookId}:
+    parameters:
+      - name: bookId
+        in: path
+        required: true
+        schema:
+          type: string 
+    get:
+      summary: Ambil detail buku berdasarkan ID
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: perbarui data buku
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: {type: string}
+                author: {type: string}
+      responses:
+        '200':
+          description: Berhasil memperbarui buku
+    delete:
+      summary: Hapus buku
+      responses:
+        '200':
+          description: Buku berhasil dihapus
+          
